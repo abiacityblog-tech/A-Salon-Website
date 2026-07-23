@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glamour & Style Salon</title>
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: #fdfbf7;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navigation */
+    header {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #d4af37; /* Gold */
+    }
+    nav a {
+      margin-left: 1.5rem;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80') center/cover;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 1rem;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #ddd;
+    }
+    .btn {
+      background: #d4af37;
+      color: #1a1a1a;
+      padding: 0.8rem 1.8rem;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #fff;
+    }
+
+    /* Layout Containers */
+    .container {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #1a1a1a;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background: #d4af37;
+      display: block;
+      margin: 0.5rem auto 0;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-top: 4px solid #d4af37;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .service-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+    .service-info p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    /* Gallery Styles */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      height: 260px;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      color: #fff;
+      padding: 1.2rem 0.8rem 0.6rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* --- Testimonials / Reviews Section --- */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: #fff;
+      padding: 1.8rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-left: 4px solid #d4af37;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .stars {
+      color: #d4af37;
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+    .review-text {
+      font-style: italic;
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+    .client-name {
+      font-weight: bold;
+      color: #1a1a1a;
+      font-size: 0.9rem;
+    }
+
+    /* Booking Form */
+    .booking-section {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      max-width: 600px;
+      margin: 3rem auto;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .submit-btn {
+      width: 100%;
+      background: #1a1a1a;
+      color: #d4af37;
+      padding: 0.9rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #333;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1a1a;
+      color: #aaa;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">Glamour & Style</div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#booking">Book Now</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <h1>Look Good, Feel Confident</h1>
+    <p>Premium Hairdressing, Braiding & Barbering Services</p>
+    <a href="#booking" class="btn">Book an Appointment</a>
+  </section>
+
+  <!-- Services & Prices in Naira -->
+  <section class="container" id="services">
+    <h2 class="section-title">Our Services & Pricing</h2>
+    <div class="services-grid">
+      
+      <div class="service-card">
+        <div class="service-info">
+          <h3>Knotless Braids (Medium)</h3>
+          <p>Neat & long-lasting style</p>
+        </div>
+        <div class="price">₦25,000</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-info">
+          <h3>Full Hair Coloring & Wash</h3>
+          <p>Includes deep conditioning treatment</p>
+        </div>
+        <div class="price">₦18,000</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-info">
+          <h3>Executive Haircut + Beard Trim</h3>
+          <p>Precision cut with hot towel treatment</p>
+        </div>
+        <div class="price">₦8,000</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-info">
+          <h3>Wig Revamp & Styling</h3>
+          <p>Washing, straightening, and customizing</p>
+        </div>
+        <div class="price">₦15,000</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-info">
+          <h3>Pedicure & Manicure Set</h3>
+          <p>Nail cleaning, scrub, and gel polish</p>
+        </div>
+        <div class="price">₦12,000</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-info">
+          <h3>Full Face Glam Makeup</h3>
+          <p>Perfect for weddings & special events</p>
+        </div>
+        <div class="price">₦20,000</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section -->
+  <section class="container" id="gallery">
+    <h2 class="section-title">Style Gallery</h2>
+    <div class="gallery-grid">
+      
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=600&q=80" alt="Knotless Braids Styling">
+        <div class="gallery-caption">Knotless Braids</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Barbering Cut">
+        <div class="gallery-caption">Executive Fade Cut</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" alt="Hair Coloring and Treatment">
+        <div class="gallery-caption">Hair Coloring & Wash</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" alt="Wig Revamp Styling">
+        <div class="gallery-caption">Wig Revamp & Styling</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Customer Reviews / Testimonials -->
+  <section class="container" id="reviews">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="reviews-grid">
+      
+      <div class="review-card">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Best braid work I've had in Lagos! My knotless braids were completely pain-free and lasted over a month without frizzing."</p>
+        </div>
+        <p class="client-name">— Blessing A.</p>
+      </div>
+
+      <div class="review-card">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Super clean environment and professional barbers. Got an executive cut before my event and got so many compliments!"</p>
+        </div>
+        <p class="client-name">— Tobi O.</p>
+      </div>
+
+      <div class="review-card">
+        <div>
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Brought my old human hair wig for a revamp and it came back looking brand new. Worth every naira!"</p>
+        </div>
+        <p class="client-name">— Amaka N.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="container" id="booking">
+    <div class="booking-section">
+      <h2 class="section-title">Book Your Appointment</h2>
+      <form onsubmit="handleBooking(event)">
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="Enter phone number" required>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Select Service</label>
+          <select id="service" required>
+            <option value="">Choose a service...</option>
+            <option>Knotless Braids (₦25,000)</option>
+            <option>Full Hair Coloring (₦18,000)</option>
+            <option>Executive Haircut (₦8,000)</option>
+            <option>Wig Revamp (₦15,000)</option>
+            <option>Pedicure & Manicure (₦12,000)</option>
+            <option>Full Face Glam Makeup (₦20,000)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Preferred Date</label>
+          <input type="date" id="date" required>
+        </div>
+
+        <button type="submit" class="submit-btn">Confirm Booking</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer / Contact -->
+  <footer id="contact">
+    <p>📍 Address: Victoria Island, Lagos | 📞 Contact: +234 800 000 0000</p>
+    <p style="margin-top: 0.5rem; color: #777;">&copy; 2026 Glamour & Style Salon. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function handleBooking(event) {
+      event.preventDefault();
+      alert("Thank you! Your booking request has been submitted successfully.");
+      event.target.reset();
+    }
+  </script>
+
+</body>
+</html>
